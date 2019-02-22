@@ -33,8 +33,8 @@ class Clickhouse < Formula
 
   def install
     ENV["ENABLE_MONGODB"] = "0"
-    ENV["CC"] = "#{Formula["gcc@8"].bin}/gcc-7"
-    ENV["CXX"] = "#{Formula["gcc@8"].bin}/g++-7"
+    ENV["CC"] = "#{Formula["gcc@8"].bin}/gcc-8"
+    ENV["CXX"] = "#{Formula["gcc@8"].bin}/g++-8"
     
     inreplace "libs/libmysqlxx/cmake/find_mysqlclient.cmake", "/usr/local/opt/mysql/lib", "/usr/local/opt/mysql@5.7/lib"
     inreplace "libs/libmysqlxx/cmake/find_mysqlclient.cmake", "/usr/local/opt/mysql/include", "/usr/local/opt/mysql@5.7/include"
