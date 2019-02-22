@@ -12,7 +12,7 @@ Issues and pull requests are always welcome!
 
 Add this repository:
 ```
-brew tap hatarist/clickhouse
+brew tap samgaw/clickhouse
 ```
 
 To install the latest `stable` release, run:
