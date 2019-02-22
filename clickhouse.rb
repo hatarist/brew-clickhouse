@@ -1,25 +1,25 @@
 class Clickhouse < Formula
   desc "is an open-source column-oriented database management system."
   homepage "https://clickhouse.yandex/"
-  url "https://github.com/yandex/ClickHouse/archive/v1.1.54292-stable.zip"
-  version "1.1.54292"
-  sha256 "2c5bcd8a6fb72fb35ee4f40128b950c5e43abf7e81ec59b759b9281334494f7f"
+  url "https://github.com/yandex/ClickHouse/archive/v19.3.5-stable.zip"
+  version "19.3.5"
+  sha256 "b6694e81e4fedffa22db2a4beb2acef7b032d15454d515e01376603078d2381d"
 
   devel do
-    url "https://github.com/yandex/ClickHouse/archive/v1.1.54304-testing.zip"
-    version "1.1.54304"
-    sha256 "ea94e6f24154ed0cd6aed2f7beaa0a38d81a682fb59ae15e47a019008e4d41da"
+    url "https://github.com/yandex/ClickHouse/archive/v19.3.5-testing.zip"
+    version "19.3.5"
+    sha256 "22efdb44b55316f97f7e97c399705d1e19e58f39d36b4858a65ea491c5121f2d"
   end
 
-  bottle do
-    root_url 'https://github.com/hatarist/homebrew-clickhouse/releases/download/bottle'
-    sha256 "4a9539797fbedc28412f7bc0bdd1096e3da9eb9109448abe45319091ef99aa94" => :el_capitan
-  end
+  # bottle do
+  #   root_url '
+  #   sha256 "" => :high_sierra
+  # end
   
   head "https://github.com/yandex/ClickHouse.git"
 
   depends_on "cmake" => :build
-  depends_on "gcc@7" => :build
+  depends_on "gcc@8" => :build
 
   depends_on "boost" => :build
   depends_on "icu4c" => :build
@@ -33,8 +33,8 @@ class Clickhouse < Formula
 
   def install
     ENV["ENABLE_MONGODB"] = "0"
-    ENV["CC"] = "#{Formula["gcc@7"].bin}/gcc-7"
-    ENV["CXX"] = "#{Formula["gcc@7"].bin}/g++-7"
+    ENV["CC"] = "#{Formula["gcc@8"].bin}/gcc-7"
+    ENV["CXX"] = "#{Formula["gcc@8"].bin}/g++-7"
     
     inreplace "libs/libmysqlxx/cmake/find_mysqlclient.cmake", "/usr/local/opt/mysql/lib", "/usr/local/opt/mysql@5.7/lib"
     inreplace "libs/libmysqlxx/cmake/find_mysqlclient.cmake", "/usr/local/opt/mysql/include", "/usr/local/opt/mysql@5.7/include"
@@ -101,7 +101,6 @@ class Clickhouse < Formula
       #{etc}/clickhouse/
     The database itself will store data at:
       #{var}/clickhouse/
-
     If you're going to run the server, make sure to increase `maxfiles` limit:
       https://github.com/yandex/ClickHouse/blob/master/MacOS.md
   EOS
